@@ -22,3 +22,8 @@ variable "ssh_key_name" {
   type = string
   default = "slim-ssh"
 }
+
+variable "sshinstance_count" {
+  type = number
+  default = 1
+}

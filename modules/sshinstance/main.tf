@@ -20,6 +20,7 @@ data "aws_ami" "amazon_linux" {
 
 
 resource "aws_instance" "ssh" {
+  count                  = var.sshinstance_count
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t3.micro"
   subnet_id              = var.public_subnet_id
@@ -27,7 +28,7 @@ resource "aws_instance" "ssh" {
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
 
   tags = {
-    Name = "${var.name_prefix}-instance"
+    Name = "${var.name_prefix}-instance-${count.index}"
     Environment = var.environment
   }
 }

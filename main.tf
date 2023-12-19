@@ -1,5 +1,26 @@
+data "aws_ami" "amazon_linux" {
+  most_recent      = true
+  owners           = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-2023*-x86_64"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+
 resource "aws_instance" "ssh" {
-  ami                    = "ami-05d1dd0175a5c3b99"
+  ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t3.micro"
   subnet_id              = var.public_subnet_id
   key_name               = var.ssh_key_name

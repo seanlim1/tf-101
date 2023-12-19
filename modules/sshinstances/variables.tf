@@ -1,6 +1,6 @@
 variable "name_prefix" {
   type = string
-  default = "slim"
+  # default = "slim" # to change
 }
 
 variable "environment" {

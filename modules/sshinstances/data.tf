@@ -18,6 +18,7 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+## Additional Example: Data Block
 # data "aws_subnets" "public" {
 #   filter {
 #     name   = "vpc-id"
